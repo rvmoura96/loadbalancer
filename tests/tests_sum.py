@@ -10,6 +10,6 @@ class TestMySum(TestCase):
         self.assertEqual(expected, result)
 
     def test_my_sum_should_return_30_when_x_and_y_are_equal_15(self):
-        expected = 20
+        expected = 30
         result = my_sum(15, 15)
         self.assertEqual(expected, result)
