@@ -5,3 +5,4 @@ before_script:
   - pipenv install
 script:
   - pipenv run python -m unittest
+  - pipenv run flake8
