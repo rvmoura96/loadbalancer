@@ -1,3 +1,4 @@
+# flake8: noqa
 from unittest import TestCase
 
 from load_balancer import LoadBalancer

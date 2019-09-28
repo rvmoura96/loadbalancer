@@ -3,7 +3,7 @@ from user import User
 
 
 class LoadBalancer:
-    def __init__(self, ttask:int, umax: int):
+    def __init__(self, ttask: int, umax: int):
         self.TTASK = ttask
         self.UMAX = umax
         self.servers = list()
