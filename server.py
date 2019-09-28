@@ -25,4 +25,7 @@ class Server:
 
     def calculate_total_per_tick(self):
         """Calculate the total value per tick run."""
-        self.total += (self.total_users() * self.COST_PER_TICK)
+        total = int()
+        total += (self.total_users() * self.COST_PER_TICK)
+        self.total += total
+        return total

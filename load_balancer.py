@@ -15,8 +15,10 @@ class LoadBalancer:
         Calculate the total cost of all servers on servers
         attributes.
         """
+        total = int()
         for server in self.servers:
-            self.total += server.calculate_total_per_tick()
+            total = server.calculate_total_per_tick() + total
+        return total
 
     def verify_available_server_existence(self) -> bool:
         """Verify the existence of a available server.

@@ -3,6 +3,7 @@ from unittest import TestCase
 
 from load_balancer import LoadBalancer
 from server import Server
+from user import User
 
 
 class TestLoadBalancer(TestCase):
@@ -26,3 +27,13 @@ class TestLoadBalancer(TestCase):
         result = self.load_balancer.verify_available_server_existence()
         self.assertEqual(exptected, result)
 
+    def test_calculate_total_should_return_three_when_there_are_three_servers_running_on_load_balancer(self):
+        for i in range(3):
+            server = self.load_balancer.create_a_server()
+            user = User(1)
+            server.connect(user)
+            self.load_balancer.servers.append(server)
+
+        expected = 3
+        result = self.load_balancer.calculate_total()
+        self.assertEqual(expected, result)
