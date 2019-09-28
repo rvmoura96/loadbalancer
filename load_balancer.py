@@ -1,4 +1,5 @@
 """
+
 Constant value for tick cost COST_PER_TICK = 1.00
 tick -> basic time unit
 ttask -> ticks for a task conclusion
@@ -15,6 +16,5 @@ class Task:
     def execute(self):
         self.ticks_to_conclusion -= 1
 
-    @property
     def complete(self):
         return not self.ticks_to_conclusion
