@@ -29,6 +29,7 @@ class LoadBalancer:
             total_users += server.total_users()
 
         self.total_users = total_users
+
         return total_users
 
     def verify_available_server_existence(self) -> bool:
@@ -47,24 +48,24 @@ class LoadBalancer:
         server = Server(self.UMAX)
         return server
 
-    def assign_task_to_server(self, task_tick: int) -> None:
+    def assign_task_to_server(self, users) -> None:
         """Assign a task to a server.
 
         Assign a task to an existent server or create a
         new server and assign the task to the new instance.
         """
-        if not self.verify_available_server_existence():
-            server = self.create_a_server()
-            server.connect(User(task_tick))
-            self.servers.append(server)
-        for server in self.servers:
-            if server.available():
-                server.connect(User(task_tick))
+        for i in range(users):
+            for server in self.servers:
+                if server.available():
+                    server.connect(User(self.TTASK))
+                    break
+            else:
+                server = self.create_a_server()
+                server.connect(User(self.TTASK))
+                self.servers.append(server)
 
-    def execute_users(self):
+    def run_tasks(self):
         for server in self.servers:
             server.execute_tasks()
-
-    def disconnect_users(self):
-        for server in self.servers:
-            server.disconnect()
+        self.total += len(self.servers)
+        self.servers = [s for s in self.servers if not s.is_empty()]

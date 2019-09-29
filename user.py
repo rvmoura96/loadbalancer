@@ -8,4 +8,4 @@ class User:
 
     def complete(self) -> bool:
         """Verify if the task still have ttask."""
-        return not self.ttask
+        return self.ttask <= 0

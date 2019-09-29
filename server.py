@@ -9,6 +9,9 @@ class Server:
         """Verify the server availability."""
         return len(self.users) < self.umax
 
+    def is_empty(self):
+        return len(self.users) == 0
+
     def connect(self, user) -> None:
         """Connect a user/task on server."""
         self.users.append(user)
@@ -26,6 +29,7 @@ class Server:
     def execute_tasks(self):
         for user in self.users:
             user.execute()
+        self.users = [u for u in self.users if not u.complete()]
 
     def calculate_total_per_tick(self) -> int:
         """Calculate the total value per tick run."""
