@@ -27,29 +27,3 @@ class TestServer(TestCase):
         expected = 1
         result = self.server.total_users()
         self.assertEqual(expected, result)
-
-    def test_after_disconnect_a_user_with_a_task_complete_the_users_len_should_be_zero(self):
-        self.server.connect(User(0))
-        self.server.disconnect()
-        expected = 0
-        result = self.server.total_users()
-        self.assertEqual(expected, result)
-
-    def test_after_calculate_total_per_tick_once_ran_server_total_should_be_three(self):
-        self.server.connect(User(1))
-        self.server.connect(User(1))
-        self.server.connect(User(1))
-        self.server.calculate_total_per_tick()
-        expected = 3
-        result = self.server.total
-        self.assertEqual(expected, result)
-
-    def test_after_two_ticks_calculate_with_three_users_server_total_attribute_should_be_six(self):
-        self.server.connect(User(1))
-        self.server.connect(User(1))
-        self.server.connect(User(1))
-        self.server.calculate_total_per_tick()
-        self.server.calculate_total_per_tick()
-        expected = 6
-        result = self.server.total
-        self.assertEqual(expected, result)

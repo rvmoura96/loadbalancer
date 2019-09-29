@@ -12,11 +12,14 @@ load_balancer = LoadBalancer(TTASK, UMAX)
 tasks = tasks[2:]
 
 for i in tasks:
+    load_balancer.run_tasks()
     load_balancer.assign_task_to_server(i)
     load_balancer.calculate_user()
-    load_balancer.run_tasks()
-
+    print(load_balancer.output())
 
 while len(load_balancer.servers):
     load_balancer.run_tasks()
     load_balancer.calculate_user()
+    print(load_balancer.output())
+
+print(load_balancer.total)

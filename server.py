@@ -20,20 +20,7 @@ class Server:
         """Return the total user/tasks running."""
         return len(self.users)
 
-    def disconnect(self) -> None:
-        """Disconnect all completed users tasks."""
-        for user in self.users:
-            if user.complete():
-                self.users.remove(user)
-
     def execute_tasks(self):
         for user in self.users:
             user.execute()
         self.users = [u for u in self.users if not u.complete()]
-
-    def calculate_total_per_tick(self) -> int:
-        """Calculate the total value per tick run."""
-        total = int()
-        total += (self.total_users() * self.COST_PER_TICK)
-        self.total += total
-        return total

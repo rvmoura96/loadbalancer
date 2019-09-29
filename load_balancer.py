@@ -10,18 +10,6 @@ class LoadBalancer:
         self.total = int()
         self.total_users = int()
 
-    def calculate_total(self) -> int:
-        """"Calculate the total cost of all servers.
-
-        Calculate the total cost of all servers on servers
-        attributes.
-        """
-        total = int()
-        for server in self.servers:
-            total = server.calculate_total_per_tick() + total
-        self.total = total
-        return total
-
     def calculate_user(self) -> int:
         total_users = int()
 
@@ -31,17 +19,6 @@ class LoadBalancer:
         self.total_users = total_users
 
         return total_users
-
-    def verify_available_server_existence(self) -> bool:
-        """Verify the existence of a available server.
-
-        Verify the existence of a available server on
-        servers attributes.
-        """
-        for server in self.servers:
-            if server.available():
-                return True
-        return False
 
     def create_a_server(self) -> Server:
         """"Create a server instance."""
@@ -69,3 +46,6 @@ class LoadBalancer:
             server.execute_tasks()
         self.total += len(self.servers)
         self.servers = [s for s in self.servers if not s.is_empty()]
+
+    def output(self):
+        return ", ".join(str(len(s.users)) for s in self.servers)
