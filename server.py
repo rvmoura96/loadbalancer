@@ -23,7 +23,11 @@ class Server:
             if user.complete():
                 self.users.remove(user)
 
-    def calculate_total_per_tick(self):
+    def execute_tasks(self):
+        for user in self.users:
+            user.execute()
+
+    def calculate_total_per_tick(self) -> int:
         """Calculate the total value per tick run."""
         total = int()
         total += (self.total_users() * self.COST_PER_TICK)

@@ -1,16 +1,5 @@
-"""
-
-Constant value for tick cost COST_PER_TICK = 1.00
-tick -> basic time unit
-ttask -> ticks for a task conclusion
-umax -> simultaneous user per server
-
-
-"""
-
-
 class User:
-    def __init__(self, ttask):
+    def __init__(self, ttask: int):
         self.ttask = ttask
 
     def execute(self) -> None:
